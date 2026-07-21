@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol name="wp_fifo_v1">
+  <copyright>Copyright © 2024 Xaver Hugl</copyright>
+  <interface name="wp_fifo_manager_v1" version="1">
+    <request name="destroy" type="destructor"/>
+    <request name="get_fifo_surface">
+      <arg name="id" type="new_id" interface="wp_fifo_surface_v1"/>
+      <arg name="surface" type="object" interface="wl_surface"/>
+    </request>
+  </interface>
+  <interface name="wp_fifo_surface_v1" version="1">
+    <request name="destroy" type="destructor"/>
+  </interface>
+</protocol>

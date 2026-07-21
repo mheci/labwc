@@ -1,0 +1,12 @@
+[package]
+name = "labwc-backend"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Backend abstraction (DRM, headless) for labwc-rs"
+
+[dependencies]
+labwc-core = { path = "../core" }
+tracing.workspace = true
+libc.workspace = true
+nix.workspace = true

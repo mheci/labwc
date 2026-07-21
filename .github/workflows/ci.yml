@@ -1,0 +1,123 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+    tags: ['v*']
+  pull_request:
+    branches: [master, main]
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Format check
+        run: cargo fmt --all -- --check
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: Type check
+        run: cargo check --workspace --all-targets
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Run tests
+        run: cargo test --workspace
+
+  doc:
+    name: Docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Build documentation
+        env:
+          RUSTDOCFLAGS: "-D warnings"
+        run: cargo doc --workspace --no-deps --document-private-items
+
+  build-arch:
+    name: Build (Arch Linux)
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+    steps:
+      - name: Install deps
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm rust base-devel wayland wayland-protocols \
+            cairo pango libinput libxkbcommon pixman libpng librsvg libxml2 glib2 libxcb
+      - uses: actions/checkout@v4
+      - name: Build release
+        run: cargo build --release
+      - name: Strip
+        run: strip target/release/labwc-rs
+      - name: Checksum
+        run: sha256sum target/release/labwc-rs > target/release/labwc-rs.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: labwc-rs-archlinux-x86_64
+          path: |
+            target/release/labwc-rs
+            target/release/labwc-rs.sha256
+
+  build-fedora:
+    name: Build (Fedora)
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
+    steps:
+      - name: Install deps
+        run: |
+          dnf install -y cargo rust gcc gcc-c++ pkg-config make cmake \
+            wayland-devel wayland-protocols-devel cairo-devel \
+            pango-devel libinput-devel libxkbcommon-devel \
+            pixman-devel libpng-devel librsvg2-devel \
+            libxml2-devel glib2-devel libxcb-devel
+      - uses: actions/checkout@v4
+      - name: Build release
+        run: cargo build --release
+      - name: Strip
+        run: strip target/release/labwc-rs
+      - name: Checksum
+        run: sha256sum target/release/labwc-rs > target/release/labwc-rs.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: labwc-rs-fedora-x86_64
+          path: |
+            target/release/labwc-rs
+            target/release/labwc-rs.sha256
+
+  release:
+    name: GitHub Release
+    needs: [lint, test, doc, build-arch, build-fedora]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+          path: dist
+      - name: Checksums
+        run: cd dist && sha256sum * > SHA256SUMS
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          draft: true
+          generate_release_notes: true

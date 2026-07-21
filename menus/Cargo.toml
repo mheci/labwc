@@ -1,0 +1,13 @@
+[package]
+name = "labwc-menus"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Menu system for labwc-rs"
+
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-actions = { path = "../actions" }
+labwc-scene = { path = "../scene" }
+quick-xml.workspace = true
+tracing.workspace = true

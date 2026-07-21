@@ -1,0 +1,12 @@
+[package]
+name = "labwc-scene"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Scene graph for labwc-rs compositor"
+
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-output = { path = "../output" }
+tracing.workspace = true
+parking_lot.workspace = true

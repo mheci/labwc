@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol name="wp_content_type_v1">
+  <copyright>Copyright © 2024 Simon Ser</copyright>
+  <interface name="wp_content_type_manager_v1" version="1">
+    <request name="destroy" type="destructor"/>
+    <request name="get_surface_content_type">
+      <arg name="id" type="new_id" interface="wp_content_type_v1"/>
+      <arg name="surface" type="object" interface="wl_surface"/>
+    </request>
+  </interface>
+  <interface name="wp_content_type_v1" version="1">
+    <request name="destroy" type="destructor"/>
+    <enum name="content_type">
+      <entry name="none" value="0"/>
+      <entry name="game" value="1"/>
+      <entry name="video" value="2"/>
+    </enum>
+    <request name="set_content_type">
+      <arg name="content_type" type="uint" enum="content_type"/>
+    </request>
+  </interface>
+</protocol>
