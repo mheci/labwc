@@ -1,0 +1,34 @@
+[package]
+name = "labwc-rs"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "A Wayland window-stacking compositor (Rust rewrite of labwc)"
+default-run = "labwc-rs"
+
+[[bin]]
+name = "labwc-rs"
+path = "src/main.rs"
+
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-cli = { path = "../cli" }
+labwc-config = { path = "../config" }
+labwc-output = { path = "../output" }
+labwc-scene = { path = "../scene" }
+labwc-window = { path = "../window" }
+labwc-shell = { path = "../shell" }
+labwc-wayland = { path = "../wayland" }
+labwc-util = { path = "../util" }
+labwc-workspace = { path = "../workspace" }
+clap.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+libc.workspace = true
+
+[dev-dependencies]
+criterion = "0.5"
+
+[[bench]]
+name = "bench"
+harness = false

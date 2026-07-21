@@ -1,0 +1,12 @@
+[package]
+name = "labwc-xwayland"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "XWayland support for labwc-rs"
+
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-window = { path = "../window" }
+labwc-shell = { path = "../shell" }
+tracing.workspace = true
