@@ -1,0 +1,12 @@
+[package]
+name = "labwc-theme"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Theme engine (Openbox theme compatibility) for labwc-rs"
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-util = { path = "../util" }
+serde = { version = "1", features = ["derive"] }
+tracing.workspace = true
+dirs.workspace = true

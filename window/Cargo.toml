@@ -1,0 +1,16 @@
+[package]
+name = "labwc-window"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Window management (geometry, state, stacking) for labwc-rs"
+
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-output = { path = "../output" }
+labwc-workspace = { path = "../workspace" }
+labwc-scene = { path = "../scene" }
+tracing.workspace = true
+parking_lot.workspace = true
+bitflags.workspace = true
+smallvec.workspace = true
