@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol name="ext_image_capture_source_v1">
+  <copyright>Copyright © 2024 Andri Yngvason</copyright>
+  <interface name="ext_image_capture_source_manager_v1" version="1">
+    <request name="destroy" type="destructor"/>
+    <request name="create_source">
+      <arg name="id" type="new_id" interface="ext_image_capture_source_v1"/>
+      <arg name="output" type="object" interface="wl_output" allow-null="true"/>
+    </request>
+  </interface>
+  <interface name="ext_image_capture_source_v1" version="1">
+    <request name="destroy" type="destructor"/>
+    <enum name="error">
+      <entry name="invalid_dimensions" value="0"/>
+      <entry name="invalid_format" value="1"/>
+      <entry name="invalid_modifier" value="2"/>
+    </enum>
+    <request name="create_capture">
+      <arg name="id" type="new_id" interface="ext_image_capture_v1"/>
+      <arg name="width" type="int"/>
+      <arg name="height" type="int"/>
+      <arg name="format" type="uint"/>
+      <arg name="modifier" type="uint"/>
+    </request>
+    <event name="failed" type="destructor">
+      <arg name="error" type="uint" enum="error"/>
+      <arg name="message" type="string"/>
+    </event>
+  </interface>
+  <interface name="ext_image_capture_v1" version="1">
+    <request name="destroy" type="destructor"/>
+    <event name="ready">
+      <arg name="buffer" type="object" interface="wl_buffer"/>
+      <arg name="width" type="uint"/>
+      <arg name="height" type="uint"/>
+      <arg name="format" type="uint"/>
+      <arg name="modifier" type="uint"/>
+    </event>
+    <event name="failed" type="destructor">
+      <arg name="error" type="uint" enum="error"/>
+      <arg name="message" type="string"/>
+    </event>
+  </interface>
+</protocol>

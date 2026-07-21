@@ -1,0 +1,13 @@
+[package]
+name = "labwc-focus"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Focus management for labwc-rs"
+
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-window = { path = "../window" }
+labwc-workspace = { path = "../workspace" }
+tracing.workspace = true
+parking_lot.workspace = true

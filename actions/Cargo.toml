@@ -1,0 +1,16 @@
+[package]
+name = "labwc-actions"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Action execution engine (keybinds, mousebinds) for labwc-rs"
+
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-window = { path = "../window" }
+labwc-workspace = { path = "../workspace" }
+labwc-focus = { path = "../focus" }
+labwc-shell = { path = "../shell" }
+labwc-util = { path = "../util" }
+tracing.workspace = true
+bitflags.workspace = true
