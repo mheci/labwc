@@ -1,0 +1,12 @@
+[package]
+name = "labwc-output"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Output/monitor management for labwc-rs"
+
+[dependencies]
+labwc-core = { path = "../core" }
+tracing.workspace = true
+parking_lot.workspace = true
+bitflags.workspace = true

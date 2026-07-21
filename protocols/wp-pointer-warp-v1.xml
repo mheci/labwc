@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol name="wp_pointer_warp_v1">
+  <copyright>Copyright © 2024 Roman Gilg</copyright>
+  <interface name="wp_pointer_warp_manager_v1" version="1">
+    <request name="destroy" type="destructor"/>
+    <request name="warp_pointer">
+      <arg name="surface" type="object" interface="wl_surface"/>
+      <arg name="x" type="fixed"/>
+      <arg name="y" type="fixed"/>
+    </request>
+  </interface>
+</protocol>

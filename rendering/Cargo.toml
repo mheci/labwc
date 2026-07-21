@@ -1,0 +1,11 @@
+[package]
+name = "labwc-rendering"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Rendering (EGL/GLES/Vulkan) for labwc-rs"
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-backend = { path = "../backend" }
+tracing.workspace = true
+libc.workspace = true
