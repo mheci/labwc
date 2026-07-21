@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol name="xdg_toplevel_tag_v1">
+  <copyright>Copyright © 2024 labwc-rs contributors</copyright>
+  <interface name="xdg_toplevel_tag_manager_v1" version="1">
+    <request name="destroy" type="destructor"/>
+    <request name="tag_toplevel">
+      <arg name="toplevel" type="object" interface="xdg_toplevel"/>
+      <arg name="tag" type="string"/>
+    </request>
+  </interface>
+</protocol>

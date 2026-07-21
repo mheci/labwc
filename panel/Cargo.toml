@@ -1,0 +1,16 @@
+[package]
+name = "labwc-panel"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Integrated desktop panel for labwc-rs"
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-config = { path = "../config" }
+labwc-actions = { path = "../actions" }
+labwc-workspace = { path = "../workspace" }
+labwc-theme = { path = "../theme" }
+labwc-ipc = { path = "../ipc" }
+tracing.workspace = true
+serde = { version = "1", features = ["derive"] }
+serde_json.workspace = true

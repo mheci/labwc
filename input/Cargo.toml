@@ -1,0 +1,15 @@
+[package]
+name = "labwc-input"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Input handling (keyboard, mouse, touch, tablet) for labwc-rs"
+
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-config = { path = "../config" }
+tracing.workspace = true
+bitflags.workspace = true
+smallvec.workspace = true
+parking_lot.workspace = true
+libc.workspace = true
