@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol name="wp_commit_timing_v1">
+  <copyright>Copyright © 2024 labwc-rs contributors</copyright>
+  <interface name="wp_commit_timing_manager_v1" version="1">
+    <request name="destroy" type="destructor"/>
+    <request name="get_timer">
+      <arg name="id" type="new_id" interface="wp_commit_timer_v1"/>
+      <arg name="surface" type="object" interface="wl_surface"/>
+    </request>
+  </interface>
+  <interface name="wp_commit_timer_v1" version="1">
+    <request name="destroy" type="destructor"/>
+    <event name="timestamp">
+      <arg name="tv_sec_hi" type="uint"/>
+      <arg name="tv_sec_lo" type="uint"/>
+      <arg name="tv_nsec" type="uint"/>
+    </event>
+  </interface>
+</protocol>
