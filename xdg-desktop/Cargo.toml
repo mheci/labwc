@@ -1,0 +1,15 @@
+[package]
+name = "labwc-xdg-desktop"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "XDG Desktop Entry parser and autostart manager for labwc-rs"
+
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-util = { path = "../util" }
+tracing.workspace = true
+serde = { version = "1", features = ["derive"] }
+thiserror.workspace = true
+dirs.workspace = true
+indexmap.workspace = true
