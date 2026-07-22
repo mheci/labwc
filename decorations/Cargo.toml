@@ -1,0 +1,14 @@
+[package]
+name = "labwc-decorations"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Server-side decorations for labwc-rs"
+
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-window = { path = "../window" }
+labwc-scene = { path = "../scene" }
+tracing.workspace = true
+parking_lot.workspace = true
+bitflags.workspace = true

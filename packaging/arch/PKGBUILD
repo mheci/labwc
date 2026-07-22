@@ -1,0 +1,27 @@
+pkgname=labwc-rs
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Wayland window-stacking compositor (Rust rewrite of labwc)"
+arch=('x86_64' 'aarch64')
+url="https://github.com/mheci/labwc"
+license=('GPL-2.0-only')
+depends=('cairo' 'glib2' 'libinput' 'libxcb' 'libxkbcommon' 'pango' 'wayland' 'pixman' 'libpng' 'librsvg' 'libxml2' 'seatd')
+makedepends=('cargo' 'rust' 'git' 'cmake' 'make' 'pkg-config')
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/mheci/labwc/archive/refs/tags/v${pkgver}.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  cargo build --release --locked -p labwc-rs
+}
+
+check() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  cargo test --release --locked
+}
+
+package() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  install -Dm755 target/release/labwc-rs "${pkgdir}/usr/bin/labwc-rs"
+  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
