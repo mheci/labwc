@@ -1,0 +1,17 @@
+[package]
+name = "labwc-shell"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Shell protocol handlers (XDG, layer-shell) for labwc-rs"
+
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-window = { path = "../window" }
+labwc-scene = { path = "../scene" }
+labwc-output = { path = "../output" }
+labwc-workspace = { path = "../workspace" }
+labwc-decorations = { path = "../decorations" }
+tracing.workspace = true
+parking_lot.workspace = true
+smallvec.workspace = true
