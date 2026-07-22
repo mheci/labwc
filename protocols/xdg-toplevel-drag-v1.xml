@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol name="xdg_toplevel_drag_manager_v1">
+  <copyright>Copyright © 2024 David Edmundson</copyright>
+  <interface name="xdg_toplevel_drag_manager_v1" version="1">
+    <request name="destroy" type="destructor"/>
+    <request name="drag">
+      <arg name="id" type="new_id" interface="xdg_toplevel_drag_v1"/>
+      <arg name="toplevel" type="object" interface="xdg_toplevel"/>
+      <arg name="seat" type="object" interface="wl_seat"/>
+      <arg name="serial" type="uint"/>
+      <arg name="x" type="int"/>
+      <arg name="y" type="int"/>
+    </request>
+  </interface>
+  <interface name="xdg_toplevel_drag_v1" version="1">
+    <request name="destroy" type="destructor"/>
+    <event name="configure">
+      <arg name="x_offset" type="int"/>
+      <arg name="y_offset" type="int"/>
+    </event>
+    <event name="finished"/>
+  </interface>
+</protocol>
