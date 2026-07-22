@@ -1,0 +1,25 @@
+[package]
+name = "labwc-wayland"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Wayland protocol implementations for labwc-rs"
+
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-input = { path = "../input" }
+labwc-output = { path = "../output" }
+labwc-shell = { path = "../shell" }
+labwc-window = { path = "../window" }
+labwc-focus = { path = "../focus" }
+tracing.workspace = true
+wayland-server.workspace = true
+wayland-protocols.workspace = true
+wayland-backend.workspace = true
+smallvec.workspace = true
+parking_lot.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+
+[build-dependencies]

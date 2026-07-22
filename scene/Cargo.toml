@@ -1,0 +1,11 @@
+[package]
+name = "labwc-scene"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Scene graph with GPU resource lifecycle for labwc-rs"
+[dependencies]
+labwc-core = { path = "../core" }
+labwc-output = { path = "../output" }
+tracing.workspace = true
+parking_lot.workspace = true

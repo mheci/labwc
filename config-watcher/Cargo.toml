@@ -1,0 +1,11 @@
+[package]
+name = "labwc-config-watcher"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Hot-reload watcher for labwc-rs configuration files"
+[dependencies]
+inotify = "0.10"
+tracing.workspace = true
+parking_lot.workspace = true
+dirs.workspace = true
